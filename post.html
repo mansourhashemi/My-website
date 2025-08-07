@@ -1,62 +1,68 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ثبت آگهی</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Vazirmatn', sans-serif;
-      background-color: #f5f5f5;
-      margin: 0;
-      padding: 0;
+      background-color: #f9f9f9;
+      padding: 2rem;
+      direction: rtl;
     }
-    .container {
-      width: 90%;
+    .form-container {
       max-width: 600px;
-      margin: 2rem auto;
-      background: white;
+      margin: auto;
+      background-color: #fff;
       padding: 2rem;
       border-radius: 10px;
-      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
-    h1 {
-      color: #d32f2f;
+    h2 {
       text-align: center;
+      color: #d32f2f;
+      margin-bottom: 1.5rem;
     }
     label {
       display: block;
-      margin-top: 1rem;
-      font-weight: bold;
+      margin: 0.8rem 0 0.3rem;
     }
     input, select, textarea {
       width: 100%;
       padding: 0.7rem;
-      margin-top: 0.3rem;
-      border: 1px solid #ccc;
       border-radius: 6px;
+      border: 1px solid #ccc;
       font-size: 1rem;
+    }
+    textarea {
+      resize: vertical;
     }
     button {
       margin-top: 1.5rem;
       width: 100%;
-      padding: 0.8rem;
       background-color: #d32f2f;
       color: white;
+      padding: 0.8rem;
+      font-size: 1rem;
       border: none;
       border-radius: 6px;
-      font-size: 1.1rem;
       cursor: pointer;
     }
     button:hover {
       background-color: #b71c1c;
     }
+    .success {
+      color: green;
+      text-align: center;
+      margin-top: 1rem;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>ثبت آگهی جدید</h1>
+  <div class="form-container">
+    <h2>ثبت آگهی جدید</h2>
     <form id="ad-form">
       <label for="title">عنوان آگهی:</label>
       <input type="text" id="title" required>
@@ -64,11 +70,11 @@
       <label for="description">توضیحات:</label>
       <textarea id="description" rows="4" required></textarea>
 
-      <label for="price">قیمت (تومان):</label>
-      <input type="number" id="price" required>
+      <label for="price">قیمت:</label>
+      <input type="text" id="price" required>
 
       <label for="phone">شماره تماس:</label>
-      <input type="tel" id="phone" required>
+      <input type="text" id="phone" required>
 
       <label for="category">دسته‌بندی:</label>
       <select id="category" required>
@@ -81,23 +87,25 @@
         <option value="استخدام">👔 استخدام</option>
       </select>
 
-      <label for="image">تصویر آگهی (URL):</label>
-      <input type="url" id="image" placeholder="مثال: https://...">
+      <label for="image">لینک عکس:</label>
+      <input type="text" id="image" placeholder="مثلاً https://...">
 
       <button type="submit">ثبت آگهی</button>
+      <div class="success" id="success-message" style="display: none;">✅ آگهی با موفقیت ثبت شد!</div>
     </form>
   </div>
 
   <script>
     const form = document.getElementById('ad-form');
+    const successMessage = document.getElementById('success-message');
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      const ad = {
+      const newAd = {
         title: document.getElementById('title').value,
         description: document.getElementById('description').value,
-        price: new Intl.NumberFormat('fa-IR').format(document.getElementById('price').value) + ' تومان',
+        price: document.getElementById('price').value,
         phone: document.getElementById('phone').value,
         category: document.getElementById('category').value,
         image: document.getElementById('image').value || 'https://via.placeholder.com/300'
@@ -105,11 +113,16 @@
 
       const storedAds = localStorage.getItem('ads');
       const ads = storedAds ? JSON.parse(storedAds) : [];
-      ads.push(ad);
+      ads.push(newAd);
       localStorage.setItem('ads', JSON.stringify(ads));
 
-      alert('آگهی با موفقیت ثبت شد!');
-      window.location.href = 'index.html'; // بازگشت به صفحه اصلی
+      form.reset();
+      successMessage.style.display = 'block';
+
+      // Redirect to main page after 2 seconds
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 2000);
     });
   </script>
 </body>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8"> 
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
   <title>سایت آگهی</title> 
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&amp;display=swap" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet"> 
   <style>
     body {
       font-family: 'Vazirmatn', sans-serif;
@@ -130,6 +130,7 @@
       color: white;
     }
 
+    /* Bottom Bar */
     .bottom-bar {
       position: fixed;
       bottom: 0;
@@ -194,6 +195,7 @@
   </style> 
 </head> 
 <body> 
+  <!-- Header --> 
   <header class="header"> 
     <div class="container"> 
       <h1 class="logo">آنلاین آگهی</h1> 
@@ -204,6 +206,8 @@
       </nav> 
     </div> 
   </header> 
+
+  <!-- Search & Categories --> 
   <section class="search-section"> 
     <div class="container"> 
       <div class="search-bar"> 
@@ -231,24 +235,42 @@
       </div> 
     </div> 
   </section> 
+
+  <!-- Ads Section --> 
   <section class="ads-section"> 
     <div class="container"> 
       <h2>آگهی‌های جدید</h2> 
       <div class="ads-grid" id="ads-container"></div> 
     </div> 
   </section> 
-  <div class="bottom-bar"> 
-    <a href="ads.html" class="bottom-link" data-page="ads"><span>📢</span><span>آگهی‌ها</span></a> 
-    <a href="favorites.html" class="bottom-link" data-page="favorites"><span>⭐</span><span>نشان‌ها</span></a> 
-    <a href="post.html" class="bottom-link" data-page="post"><span>➕</span><span>ثبت آگهی</span></a> 
-    <a href="support.html" class="bottom-link" data-page="support"><span>📞💬</span><span>پشتیبانی</span></a> 
-    <a href="account.html" class="bottom-link" data-page="account"><span>👤</span><span>حساب من</span></a> 
-  </div> 
+
+  <!-- Bottom Navigation Bar -->
+  <div class="bottom-bar">
+    <a href="ads.html" class="bottom-link" data-page="ads">
+      <span>📢</span><span>آگهی‌ها</span>
+    </a>
+    <a href="favorites.html" class="bottom-link" data-page="favorites">
+      <span>⭐</span><span>نشان‌ها</span>
+    </a>
+    <a href="post.html" class="bottom-link" data-page="post">
+      <span>➕</span><span>ثبت آگهی</span>
+    </a>
+    <a href="support.html" class="bottom-link" data-page="support">
+      <span>📞💬</span><span>پشتیبانی</span>
+    </a>
+    <a href="account.html" class="bottom-link" data-page="account">
+      <span>👤</span><span>حساب من</span>
+    </a>
+  </div>
+
+  <!-- Footer --> 
   <footer class="footer"> 
     <div class="container"> 
       <p>© ۲۰۲۵ دیوار من - تمامی حقوق محفوظ است.</p> 
     </div> 
   </footer> 
+
+  <!-- JavaScript --> 
   <script>
     const adsData = [
       {
@@ -323,9 +345,10 @@
       displayAds(results);
     });
 
+    // نمایش آگهی‌ها
     displayAds([...adsData, ...getLocalAds()]);
 
-    // فعال‌سازی لینک صفحه جاری
+    // فعال‌سازی نوار پایین
     const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
     document.querySelectorAll('.bottom-link').forEach(link => {
       if (link.dataset.page === currentPage) {

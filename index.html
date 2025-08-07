@@ -1,39 +1,122 @@
+
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-    <meta charset="UTF-8">
-    <title>آگهی‌ها</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>آنلاین آگهی</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      direction: rtl;
+      background: #f5f5f5;
+    }
+    .header {
+      background-color: #d32f2f;
+      padding: 20px;
+      color: white;
+      text-align: center;
+      font-size: 24px;
+    }
+    .btn {
+      background-color: #ef5350;
+      color: white;
+      padding: 12px;
+      margin: 5px;
+      border: none;
+      border-radius: 8px;
+      width: calc(100% - 20px);
+      display: block;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background-color: #c62828;
+    }
+    .search-bar {
+      padding: 15px;
+      background: white;
+    }
+    .search-bar select,
+    .search-bar input {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    .categories {
+      padding: 10px;
+    }
+    .category {
+      background: white;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 10px;
+      font-size: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+    .footer {
+      display: flex;
+      justify-content: space-around;
+      background: white;
+      padding: 10px 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      border-top: 1px solid #ccc;
+    }
+    .footer div {
+      font-size: 12px;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
-    <h1>لیست آگهی‌ها</h1>
-    <ul id="ads-list"></ul>
 
-    <script>
-        const ads = [
-            {
-                title: "فروش آپارتمان",
-                description: "آپارتمان ۸۰ متری نوساز در تهران",
-                price: "۴ میلیارد تومان"
-            },
-            {
-                title: "اجاره خانه",
-                description: "خانه ویلایی ۲ خوابه در رشت",
-                price: "۱۰ میلیون رهن، ۲ میلیون اجاره"
-            }
-        ];
+  <div class="header">آنلاین آگهی</div>
 
-        const list = document.getElementById('ads-list');
+  <div class="search-bar">
+    <button class="btn">ثبت آگهی</button>
+    <button class="btn">ورود</button>
+    <button class="btn">ثبت‌نام</button>
 
-        ads.forEach(ad => {
-            const item = document.createElement('li');
-            const link = document.createElement('a');
+    <select>
+      <option>انتخاب شهر</option>
+      <option>تهران</option>
+      <option>مشهد</option>
+    </select>
 
-            link.href = `ad-detail.html?title=${encodeURIComponent(ad.title)}&description=${encodeURIComponent(ad.description)}&price=${encodeURIComponent(ad.price)}`;
-            link.textContent = ad.title;
+    <input type="text" placeholder="جستجو در آگهی‌ها...">
+  </div>
 
-            item.appendChild(link);
-            list.appendChild(item);
-        });
-    </script>
+  <div class="categories">
+    <div class="category" onclick="goToDetail('فروش آپارتمان')">املاک 🏠</div>
+    <div class="category" onclick="goToDetail('خودرو کارکرده')">وسایل نقلیه 🚗</div>
+    <div class="category" onclick="goToDetail('موبایل نو')">کالای دیجیتال 💻</div>
+    <div class="category" onclick="goToDetail('کابینت آشپزخانه')">خانه و آشپزخانه 🍽️</div>
+    <div class="category" onclick="goToDetail('تعمیرات لوازم خانگی')">خدمات 🛠️</div>
+    <div class="category" onclick="goToDetail('استخدام فروشنده')">استخدام 🎁</div>
+  </div>
+
+  <div class="footer">
+    <div>حساب من 👤</div>
+    <div>پشتیبانی 💬📞</div>
+    <div>ثبت آگهی ➕</div>
+    <div>نشان‌ها ⭐</div>
+    <div>آگهی‌ها 📢</div>
+  </div>
+
+  <script>
+    function goToDetail(title) {
+      window.location.href = "ad-detail.html?title=" + encodeURIComponent(title);
+    }
+  </script>
+
 </body>
 </html>

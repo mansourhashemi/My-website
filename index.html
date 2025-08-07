@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>آگهی‌ها</title>
+</head>
+<body>
+  <h1>لیست آگهی‌ها</h1>
+  <ul id="ads-list"></ul>
+
+  <script>
+    // لیست آگهی‌ها (میتونی از دیتابیس یا API هم بیاری)
+    const ads = [
+      {
+        id: 1,
+        title: "فروش آپارتمان در تهران",
+        price: "۵ میلیارد تومان",
+        description: "آپارتمان ۹۰ متری، نوساز، منطقه سعادت‌آباد"
+      },
+      {
+        id: 2,
+        title: "اجاره مغازه در مشهد",
+        price: "۱۵ میلیون تومان ماهیانه",
+        description: "مغازه‌ی ۲۰ متری در مرکز شهر، مناسب کسب‌و‌کار"
+      }
+    ];
+
+    const list = document.getElementById("ads-list");
+
+    ads.forEach(ad => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = "ad-detail.html?id=" + ad.id;
+      a.textContent = ad.title + " - " + ad.price;
+
+      a.addEventListener("click", () => {
+        localStorage.setItem("ad-detail", JSON.stringify(ad));
+      });
+
+      li.appendChild(a);
+      list.appendChild(li);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="fa" dir="rtl"> 
+<head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>سایت آگهی</title> 
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet"> 
+  <style>
+    body {
+      font-family: 'Vazirmatn', sans-serif;
+      margin: 0;
+      padding: 0;
+      direction: rtl;
+      background-color: #f5f5f5;
+    }
+    .container { width: 90%; max-width: 1200px; margin: auto; }
+    .header {
+      background-color: #d32f2f;
+      color: #fff;
+      padding: 1rem 0;
+    }
+    .header .logo { margin: 0; font-size: 1.8rem; }
+    .nav {
+      margin-top: 0.5rem;
+      display: flex;
+      gap: 1rem;
+    }
+    .nav a {
+      color: white;
+      text-decoration: none;
+      background-color: rgba(255,255,255,0.2);
+      padding: 0.4rem 0.8rem;
+      border-radius: 5px;
+    }
+    .search-section {
+      background-color: #fff;
+      padding: 1rem 0;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .search-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .search-bar select,
+    .search-bar input[type="text"] {
+      padding: 0.6rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      flex: 1;
+    }
+    .search-bar button {
+      padding: 0.6rem 1rem;
+      background-color: #d32f2f;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: flex-start;
+      margin-top: 1rem;
+    }
+    .categories button {
+      padding: 0.5rem 1rem;
+      background-color: #eeeeee;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .categories button:hover {
+      background-color: #d32f2f;
+      color: white;
+    }
+    .ads-section {
+      padding: 2rem 0 5rem;
+    }
+    .ads-section h2 { margin-bottom: 1rem; }
+    .ads-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+    .ad-card {
+      background-color: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    .ad-card a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .ad-card img {
+      width: 100%;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+    }
+    .ad-card h3 {
+      font-size: 1.1rem;
+      margin: 0.5rem 0;
+    }
+    .ad-card span {
+      color: #d32f2f;
+      font-weight: bold;
+    }
+    .ad-contact {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+      justify-content: space-between;
+    }
+    .ad-contact button,
+    .ad-contact a {
+      flex: 1;
+      text-align: center;
+      padding: 0.5rem;
+      background-color: #eeeeee;
+      color: black;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .ad-contact button:hover,
+    .ad-contact a:hover {
+      background-color: #d32f2f;
+      color: white;
+    }
+    .bottom-bar {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      background-color: #ffffff;
+      border-top: 1px solid #ddd;
+      display: flex;
+      justify-content: space-around;
+      padding: 0.6rem 0;
+      z-index: 1000;
+      align-items: center;
+    }
+    .bottom-bar a {
+      text-decoration: none;
+      color: #d32f2f;
+      font-weight: bold;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 0.9rem;
+    }
+    .bottom-bar a:hover {
+      color: #b71c1c;
+    }
+    .bottom-bar a.active {
+      color: #b71c1c;
+      position: relative;
+    }
+    .bottom-bar a.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      right: 50%;
+      transform: translateX(50%);
+      width: 6px;
+      height: 6px;
+      background-color: #b71c1c;
+      border-radius: 50%;
+    }
+    .footer {
+      background-color: #d32f2f;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+      margin-top: 2rem;
+    }
+    @media (max-width: 768px) {
+      .nav { flex-direction: column; }
+      .categories { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">آنلاین آگهی</h1>
+      <nav class="nav">
+        <a href="post.html">ثبت آگهی</a>
+        <a href="account.html">ورود</a>
+        <a href="account.html">ثبت‌نام</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="search-section">
+    <div class="container">
+      <div class="search-bar">
+        <select id="city-select">
+          <option value="">انتخاب شهر</option>
+          <option value="تهران">تهران</option>
+          <option value="مشهد">مشهد</option>
+          <option value="اصفهان">اصفهان</option>
+          <option value="شیراز">شیراز</option>
+        </select>
+        <input id="search-input" type="text" placeholder="جستجو در آگهی‌ها...">
+        <button id="search-button">جستجو</button>
+      </div>
+      <div class="categories">
+        <button onclick="filterCategory('املاک')">🏠 املاک</button>
+        <button onclick="filterCategory('وسایل نقلیه')">🚗 وسایل نقلیه</button>
+        <button onclick="filterCategory('کالای دیجیتال')">💻 کالای دیجیتال</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="ads-section">
+    <div class="container">
+      <h2>آگهی‌های جدید</h2>
+      <div class="ads-grid" id="ads-container"></div>
+    </div>
+  </section>
+
+  <div class="bottom-bar">
+    <a href="ads.html" class="bottom-link" data-page="ads"><span>📢</span><span>آگهی‌ها</span></a>
+    <a href="favorites.html" class="bottom-link" data-page="favorites"><span>⭐</span><span>نشان‌ها</span></a>
+    <a href="post.html" class="bottom-link" data-page="post"><span>➕</span><span>ثبت آگهی</span></a>
+    <a href="support.html" class="bottom-link" data-page="support"><span>📞</span><span>پشتیبانی</span></a>
+    <a href="account.html" class="bottom-link" data-page="account"><span>👤</span><span>حساب من</span></a>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© ۲۰۲۵ دیوار من - تمامی حقوق محفوظ است.</p>
+    </div>
+  </footer>
+
+  <script>
+    const adsData = [
+      {
+        title: 'گوشی سامسونگ A52',
+        description: '8 گیگ رم، کاملاً نو',
+        price: '۱۲,۰۰۰,۰۰۰ تومان',
+        phone: '09123456789',
+        image: 'https://via.placeholder.com/300',
+        category: 'کالای دیجیتال'
+      },
+      {
+        title: 'پژو ۲۰۶ مدل ۹۸',
+        description: 'بیمه تا آخر سال، فنی سالم',
+        price: '۴۲۰,۰۰۰,۰۰۰ تومان',
+        phone: '09121234567',
+        image: 'https://via.placeholder.com/300',
+        category: 'وسایل نقلیه'
+      }
+    ];
+
+    const adsContainer = document.getElementById('ads-container');
+
+    function getLocalAds() {
+      const stored = localStorage.getItem('ads');
+      return stored ? JSON.parse(stored) : [];
+    }
+
+    function displayAds(ads) {
+      adsContainer.innerHTML = '';
+      if (ads.length === 0) {
+        adsContainer.innerHTML = '<p>هیچ آگهی‌ای یافت نشد.</p>';
+        return;
+      }
+
+      ads.forEach(ad => {
+        const card = document.createElement('div');
+        card.className = 'ad-card';
+        card.innerHTML = `
+          <a href="ad-detail.html?title=${encodeURIComponent(ad.title)}">
+            <img src="${ad.image}" alt="تصویر آگهی" />
+            <h3>${ad.title}</h3>
+            <p>${ad.description}</p>
+            <span>قیمت: ${ad.price}</span>
+          </a>
+          <div class="ad-contact">
+            <button onclick="alert('شروع چت با فروشنده')">💬 چت</button>
+            <a href="tel:${ad.phone}">📞 تماس</a>
+          </div>
+        `;
+        adsContainer.appendChild(card);
+      });
+    }
+
+    function filterCategory(category) {
+      const allAds = [...adsData, ...getLocalAds()];
+      const filtered = allAds.filter(ad => ad.category === category);
+      displayAds(filtered);
+    }
+
+    document.getElementById('search-button').addEventListener('click', () => {
+      const query = document.getElementById('search-input').value.trim();
+      const allAds = [...adsData, ...getLocalAds()];
+      const results = allAds.filter(ad =>
+        ad.title.includes(query) || ad.description.includes(query)
+      );
+      displayAds(results);
+    });
+
+    // نمایش آگهی‌ها
+    displayAds([...adsData, ...getLocalAds()]);
+  </script>
+</body>
+</html>

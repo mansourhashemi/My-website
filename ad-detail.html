@@ -1,19 +1,46 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-    <meta charset="UTF-8">
-    <title>جزئیات آگهی</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>جزئیات آگهی</title>
+  <style>
+    body {
+      direction: rtl;
+      font-family: sans-serif;
+      padding: 20px;
+      background: #fff;
+    }
+    .box {
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    h1 {
+      font-size: 22px;
+      color: #d32f2f;
+    }
+  </style>
 </head>
 <body>
-    <h1 id="title"></h1>
-    <p id="description"></p>
-    <p id="price"></p>
 
-    <script>
-        const params = new URLSearchParams(window.location.search);
-        document.getElementById('title').textContent = params.get('title');
-        document.getElementById('description').textContent = "توضیحات: " + params.get('description');
-        document.getElementById('price').textContent = "قیمت: " + params.get('price');
-    </script>
+  <h1 id="ad-title">جزئیات آگهی</h1>
+
+  <div class="box">
+    <p><strong>دسته:</strong> <span id="ad-category">---</span></p>
+    <p><strong>توضیحات:</strong> این آگهی مربوط به دسته انتخاب‌شده می‌باشد. برای اطلاعات بیشتر تماس بگیرید.</p>
+    <p><strong>شماره تماس:</strong> 09123456789</p>
+    <p><strong>قیمت:</strong> توافقی</p>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const title = params.get("title") || "آگهی";
+    document.getElementById("ad-title").innerText = title;
+    document.getElementById("ad-category").innerText = title;
+  </script>
+
 </body>
 </html>

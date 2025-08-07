@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>جزئیات آگهی</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Vazirmatn', sans-serif; padding: 2rem; background: #f9f9f9; }
+    .ad-detail { background: white; padding: 2rem; border-radius: 8px; max-width: 600px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    img { width: 100%; border-radius: 6px; margin-bottom: 1rem; }
+    h2 { margin: 0.5rem 0; }
+    .price { color: #d32f2f; font-weight: bold; margin-bottom: 1rem; }
+    .contact { margin-top: 1rem; display: flex; gap: 1rem; }
+    .contact a, .contact button {
+      flex: 1; text-align: center; background: #eeeeee; padding: 0.5rem;
+      border: none; border-radius: 6px; text-decoration: none; color: black;
+    }
+    .contact a:hover, .contact button:hover {
+      background: #d32f2f; color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="ad-detail" id="ad-detail">
+    <p>در حال بارگذاری...</p>
+  </div>
+
+  <script>
+    const adData = JSON.parse(localStorage.getItem('selectedAd'));
+
+    if (adData) {
+      document.getElementById('ad-detail').innerHTML = `
+        <img src="${adData.image}" alt="تصویر آگهی" />
+        <h2>${adData.title}</h2>
+        <p>${adData.description}</p>
+        <div class="price">قیمت: ${adData.price}</div>
+        <div class="contact">
+          <button onclick="alert('شروع چت با فروشنده')">💬 چت</button>
+          <a href="tel:${adData.phone}">📞 تماس</a>
+        </div>
+      `;
+    } else {
+      document.getElementById('ad-detail').innerHTML = '<p>آگهی یافت نشد!</p>';
+    }
+  </script>
+</body>
+</html>

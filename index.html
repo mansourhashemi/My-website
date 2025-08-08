@@ -1,10 +1,11 @@
 <!doctype html>
-<html lang="fa" dir="rtl"> 
-<head> 
-  <meta charset="UTF-8"> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <title>سایت آگهی</title> 
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet"> 
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>سایت آگهی – نسخه کامل</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <style>
     body {
       font-family: 'Vazirmatn', sans-serif;
@@ -19,14 +20,10 @@
       color: #fff;
       padding: 1rem 0;
     }
-    .header .logo { margin: 0; font-size: 1.8rem; }
-    .nav {
-      margin-top: 0.5rem;
-      display: flex;
-      gap: 1rem;
-    }
+    .header .logo { font-size: 1.8rem; margin: 0; }
+    .nav { margin-top: 0.5rem; display: flex; gap: 1rem; }
     .nav a {
-      color: white;
+      color: #fff;
       text-decoration: none;
       background-color: rgba(255,255,255,0.2);
       padding: 0.4rem 0.8rem;
@@ -39,31 +36,55 @@
     }
     .search-bar {
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
+      justify-content: space-between;
       align-items: center;
-    }
-    .search-bar select,
-    .search-bar input[type="text"] {
-      padding: 0.6rem;
-      font-size: 1rem;
-      border-radius: 6px;
       border: 1px solid #ccc;
-      flex: 1;
+      border-radius: 16px;
+      background-color: #fff;
+      padding: 10px 14px;
+      width: 550px;
+      margin: auto;
+      margin-bottom: 20px;
+      margin-right: 40px; /* برای جابجایی به راست */
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      direction: rtl;
     }
-    .search-bar button {
-      padding: 0.6rem 1rem;
-      background-color: #d32f2f;
-      color: white;
+    .search-input-container { display: flex; align-items: center; flex-grow: 1; }
+    .search-input {
       border: none;
-      border-radius: 6px;
+      outline: none;
+      width: 100%;
+      font-size: 14px;
+      color: #333;
+      background: transparent;
+    }
+    .search-icon {
+      margin-right: 10px;
+      color: #2d77f3;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .location {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      margin-right: 18px;
+      border-right: 1px solid #ddd;
+      padding-right: 16px;
+    }
+    .location i { margin-left: 6px; color: #666; }
+    .location select {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 14px;
+      color: #333;
       cursor: pointer;
     }
     .categories {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
-      justify-content: flex-start;
       margin-top: 1rem;
     }
     .categories button {
@@ -74,10 +95,22 @@
       cursor: pointer;
       transition: 0.3s;
     }
-    .categories button:hover {
-      background-color: #d32f2f;
-      color: white;
+    .categories button:hover { background-color: #d32f2f; color: #fff; }
+    .results {
+      width: 550px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 1px 5px rgba(0,0,0,0.05);
+      padding: 15px;
+      margin: 1rem auto;
+      display: none;
     }
+    .result-item {
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .result-item:last-child { border-bottom: none; }
     .ads-section {
       padding: 2rem 0 5rem;
     }
@@ -98,10 +131,7 @@
       border-radius: 6px;
       margin-bottom: 0.5rem;
     }
-    .ad-card h3 {
-      font-size: 1.1rem;
-      margin: 0.5rem 0;
-    }
+    .ad-card h3 { font-size: 1.1rem; margin: 0.5rem 0; }
     .ad-card span {
       color: #d32f2f;
       font-weight: bold;
@@ -112,37 +142,33 @@
       gap: 1rem;
       justify-content: space-between;
     }
-    .ad-contact button,
-    .ad-contact a {
+    .ad-contact button, .ad-contact a {
       flex: 1;
       text-align: center;
       padding: 0.5rem;
       background-color: #eeeeee;
-      color: black;
       border: none;
       border-radius: 6px;
       text-decoration: none;
+      color: #000;
       transition: 0.3s;
     }
-    .ad-contact button:hover,
-    .ad-contact a:hover {
+    .ad-contact button:hover, .ad-contact a:hover {
       background-color: #d32f2f;
-      color: white;
+      color: #fff;
     }
-
-    /* Bottom Bar */
     .bottom-bar {
       position: fixed;
       bottom: 0;
-      right: 0;
       left: 0;
-      background-color: #ffffff;
+      right: 0;
+      background-color: #fff;
       border-top: 1px solid #ddd;
       display: flex;
       justify-content: space-around;
+      align-items: center;
       padding: 0.6rem 0;
       z-index: 1000;
-      align-items: center;
     }
     .bottom-bar a {
       text-decoration: none;
@@ -153,17 +179,9 @@
       align-items: center;
       font-size: 0.9rem;
     }
-    .bottom-bar a:hover {
-      color: #b71c1c;
-    }
-    .bottom-bar a span:first-child {
-      font-size: 1.4rem;
-      line-height: 1.2;
-    }
-    .bottom-bar a span:last-child {
-      font-size: 0.75rem;
-      margin-top: 0.2rem;
-    }
+    .bottom-bar a:hover { color: #b71c1c; }
+    .bottom-bar a span:first-child { font-size: 1.4rem; line-height: 1.2; }
+    .bottom-bar a span:last-child { font-size: 0.75rem; margin-top: 0.2rem; }
     .bottom-bar a.active {
       color: #b71c1c;
       position: relative;
@@ -179,124 +197,97 @@
       background-color: #b71c1c;
       border-radius: 50%;
     }
-
     .footer {
       background-color: #d32f2f;
-      color: white;
+      color: #fff;
       text-align: center;
       padding: 1rem 0;
       margin-top: 2rem;
     }
-
     @media (max-width: 768px) {
-      .nav { flex-direction: column; }
-      .categories { flex-direction: column; }
+      .nav, .categories { flex-direction: column; }
+      .search-bar, .results { width: 90%; margin-right: auto; margin-left: auto; }
     }
-  </style> 
-</head> 
-<body> 
-  <!-- Header --> 
-  <header class="header"> 
-    <div class="container"> 
-      <h1 class="logo">آنلاین آگهی</h1> 
-      <nav class="nav"> 
-        <a href="post.html">ثبت آگهی</a> 
-        <a href="account.html">ورود</a> 
-        <a href="account.html">ثبت‌نام</a> 
-      </nav> 
-    </div> 
-  </header> 
+  </style>
+</head>
 
-  <!-- Search & Categories --> 
-  <section class="search-section"> 
-    <div class="container"> 
-      <div class="search-bar"> 
-        <select id="city-select"> 
-          <option value="">انتخاب شهر</option> 
-          <option value="تهران">تهران</option> 
-          <option value="مشهد">مشهد</option> 
-          <option value="اصفهان">اصفهان</option> 
-          <option value="شیراز">شیراز</option> 
-          <option value="تبریز">تبریز</option> 
-          <option value="رشت">رشت</option> 
-          <option value="کرج">کرج</option> 
-          <option value="اهواز">اهواز</option> 
-        </select> 
-        <input id="search-input" type="text" placeholder="جستجو در آگهی‌ها..."> 
-        <button id="search-button">جستجو</button> 
-      </div> 
-      <div class="categories"> 
-        <button onclick="filterCategory('املاک')">🏠 املاک</button> 
-        <button onclick="filterCategory('وسایل نقلیه')">🚗 وسایل نقلیه</button> 
-        <button onclick="filterCategory('کالای دیجیتال')">💻 کالای دیجیتال</button> 
-        <button onclick="filterCategory('خانه و آشپزخانه')">🍽 خانه و آشپزخانه</button> 
-        <button onclick="filterCategory('خدمات')">🔧 خدمات</button> 
-        <button onclick="filterCategory('استخدام')">👔 استخدام</button> 
-      </div> 
-    </div> 
-  </section> 
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">آنلاین آگهی</h1>
+      <nav class="nav">
+        <a href="post.html">ثبت آگهی</a>
+        <a href="account.html">ورود</a>
+        <a href="account.html">ثبت‌نام</a>
+      </nav>
+    </div>
+  </header>
 
-  <!-- Ads Section --> 
-  <section class="ads-section"> 
-    <div class="container"> 
-      <h2>آگهی‌های جدید</h2> 
-      <div class="ads-grid" id="ads-container"></div> 
-    </div> 
-  </section> 
+  <!-- Search & Categories -->
+  <section class="search-section">
+    <div class="container">
+      <form class="search-bar" onsubmit="handleSearch(event)">
+        <div class="search-input-container">
+          <input type="text" id="searchQuery" class="search-input" placeholder="جستجو در آگهی">
+          <i class="fas fa-bullhorn search-icon" onclick="submitSearch()"></i>
+        </div>
+        <div class="location">
+          <i class="fas fa-map-marker-alt"></i>
+          <select id="citySelect">
+            <option value="all">همه‌ی ایران</option>
+            <option value="تهران">تهران</option>
+            <option value="اصفهان">اصفهان</option>
+            <option value="شیراز">شیراز</option>
+            <option value="مشهد">مشهد</option>
+          </select>
+        </div>
+      </form>
 
-  <!-- Bottom Navigation Bar -->
+      <div class="categories">
+        <button onclick="filterCategory('املاک')">🏠 املاک</button>
+        <button onclick="filterCategory('وسایل نقلیه')">🚗 وسایل نقلیه</button>
+        <button onclick="filterCategory('کالای دیجیتال')">💻 کالای دیجیتال</button>
+        <button onclick="filterCategory('خانه و آشپزخانه')">🍽 خانه و آشپزخانه</button>
+        <button onclick="filterCategory('خدمات')">🔧 خدمات</button>
+        <button onclick="filterCategory('استخدام')">👔 استخدام</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search Results -->
+  <div class="results" id="resultsBox"></div>
+
+  <!-- Ads Section -->
+  <section class="ads-section">
+    <div class="container">
+      <h2>آگهی‌های جدید</h2>
+      <div class="ads-grid" id="ads-container"></div>
+    </div>
+  </section>
+
+  <!-- Bottom Bar -->
   <div class="bottom-bar">
-    <a href="ads.html" class="bottom-link" data-page="ads">
-      <span>📢</span><span>آگهی‌ها</span>
-    </a>
-    <a href="favorites.html" class="bottom-link" data-page="favorites">
-      <span>⭐</span><span>نشان‌ها</span>
-    </a>
-    <a href="post.html" class="bottom-link" data-page="post">
-      <span>➕</span><span>ثبت آگهی</span>
-    </a>
-    <a href="support.html" class="bottom-link" data-page="support">
-      <span>📞💬</span><span>پشتیبانی</span>
-    </a>
-    <a href="account.html" class="bottom-link" data-page="account">
-      <span>👤</span><span>حساب من</span>
-    </a>
+    <a href="ads.html" class="bottom-link" data-page="ads"><span>📢</span><span>آگهی‌ها</span></a>
+    <a href="favorites.html" class="bottom-link" data-page="favorites"><span>⭐</span><span>نشان‌ها</span></a>
+    <a href="post.html" class="bottom-link" data-page="post"><span>➕</span><span>ثبت آگهی</span></a>
+    <a href="support.html" class="bottom-link" data-page="support"><span>📞💬</span><span>پشتیبانی</span></a>
+    <a href="account.html" class="bottom-link" data-page="account"><span>👤</span><span>حساب من</span></a>
   </div>
 
-  <!-- Footer --> 
-  <footer class="footer"> 
-    <div class="container"> 
-      <p>© ۲۰۲۵ دیوار من - تمامی حقوق محفوظ است.</p> 
-    </div> 
-  </footer> 
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>© ۲۰۲۵ دیوار من - تمامی حقوق محفوظ است.</p>
+    </div>
+  </footer>
 
-  <!-- JavaScript --> 
+  <!-- JavaScript -->
   <script>
     const adsData = [
-      {
-        title: 'گوشی سامسونگ A52',
-        description: '8 گیگ رم، کاملاً نو',
-        price: '۱۲,۰۰۰,۰۰۰ تومان',
-        phone: '09123456789',
-        image: 'https://via.placeholder.com/300',
-        category: 'کالای دیجیتال'
-      },
-      {
-        title: 'پژو ۲۰۶ مدل ۹۸',
-        description: 'بیمه تا آخر سال، فنی سالم',
-        price: '۴۲۰,۰۰۰,۰۰۰ تومان',
-        phone: '09121234567',
-        image: 'https://via.placeholder.com/300',
-        category: 'وسایل نقلیه'
-      },
-      {
-        title: 'میز ناهارخوری ۶ نفره',
-        description: 'چوب راش، رنگ گردویی',
-        price: '۶,۵۰۰,۰۰۰ تومان',
-        phone: '09127654321',
-        image: 'https://via.placeholder.com/300',
-        category: 'خانه و آشپزخانه'
-      }
+      { title: 'گوشی سامسونگ A52', description: '8 گیگ رم، کاملاً نو', price: '۱۲,۰۰۰,۰۰۰ تومان', phone: '09123456789', image: 'https://via.placeholder.com/300', category: 'کالای دیجیتال', city: 'تهران' },
+      { title: 'پژو ۲۰۶ مدل ۹۸', description: 'بیمه تا آخر سال، فنی سالم', price: '۴۲۰,۰۰۰,۰۰۰ تومان', phone: '09121234567', image: 'https://via.placeholder.com/300', category: 'وسایل نقلیه', city: 'مشهد' },
+      { title: 'میز ناهارخوری ۶ نفره', description: 'چوب راش، رنگ گردویی', price: '۶,۵۰۰,۰۰۰ تومان', phone: '09127654321', image: 'https://via.placeholder.com/300', category: 'خانه و آشپزخانه', city: 'اصفهان' }
     ];
 
     const adsContainer = document.getElementById('ads-container');
@@ -308,16 +299,15 @@
 
     function displayAds(ads) {
       adsContainer.innerHTML = '';
-      if (ads.length === 0) {
+      if (!ads.length) {
         adsContainer.innerHTML = '<p>هیچ آگهی‌ای یافت نشد.</p>';
         return;
       }
-
       ads.forEach(ad => {
         const card = document.createElement('div');
         card.className = 'ad-card';
         card.innerHTML = `
-          <img src="${ad.image}" alt="تصویر آگهی" />
+          <img src="${ad.image}" alt="تصویر آگهی"/>
           <h3>${ad.title}</h3>
           <p>${ad.description}</p>
           <span>قیمت: ${ad.price}</span>
@@ -336,25 +326,40 @@
       displayAds(filtered);
     }
 
-    document.getElementById('search-button').addEventListener('click', () => {
-      const query = document.getElementById('search-input').value.trim();
-      const allAds = [...adsData, ...getLocalAds()];
-      const results = allAds.filter(ad =>
-        ad.title.includes(query) || ad.description.includes(query)
-      );
-      displayAds(results);
-    });
+    function handleSearch(event) {
+      event.preventDefault();
+      submitSearch();
+    }
 
-    // نمایش آگهی‌ها
+    function submitSearch() {
+      const query = document.getElementById("searchQuery").value.trim().toLowerCase();
+      const selectedCity = document.getElementById("citySelect").value;
+      const resultsBox = document.getElementById("resultsBox");
+      const allAds = [...adsData, ...getLocalAds()];
+      resultsBox.innerHTML = "";
+
+      const results = allAds.filter(ad => {
+        const matchText = ad.title.toLowerCase().includes(query) || ad.description.toLowerCase().includes(query);
+        const matchCity = selectedCity === "all" || (ad.city && ad.city === selectedCity);
+        return (query === "" && selectedCity === "all") ? true : (matchText && matchCity);
+      });
+
+      displayAds(results);
+
+      if (!results.length) {
+        resultsBox.innerHTML = "<div>نتیجه‌ای یافت نشد.</div>";
+        resultsBox.style.display = "block";
+      } else {
+        resultsBox.style.display = "none";
+      }
+    }
+
     displayAds([...adsData, ...getLocalAds()]);
 
-    // فعال‌سازی نوار پایین
-    const currentPage = window.location.pathname.split('/').pop().replace('.html', '');
+    const currentPage = window.location.pathname.split('/').pop().replace('.html','');
     document.querySelectorAll('.bottom-link').forEach(link => {
-      if (link.dataset.page === currentPage) {
-        link.classList.add('active');
-      }
+      if (link.dataset.page === currentPage) link.classList.add('active');
     });
-  </script> 
+  </script>
 </body>
 </html>

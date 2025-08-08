@@ -1,178 +1,89 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ورود به حساب کاربری</title>
-  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn&display=swap" rel="stylesheet">
+
+  <!-- بارگذاری فونت Vazir از CDN -->
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
+
   <style>
-    body {
-      font-family: 'Vazirmatn', sans-serif;
-      background-color: #ffffff;
+    html, body {
       margin: 0;
-      padding: 2rem;
-      color: #333;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      font-family: 'Vazir', sans-serif;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .container {
+      width: 100%;
       max-width: 400px;
-      margin: 0 auto;
+      padding: 20px;
+      box-sizing: border-box;
+      text-align: center;
     }
 
     h2 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
+      color: #e02020; /* رنگ عنوان */
+      margin-bottom: 10px;
     }
 
     p {
-      font-size: 0.95rem;
-      color: #666;
-      margin-bottom: 1rem;
-      line-height: 1.6;
+      margin-bottom: 20px;
+      color: #444;
+      font-size: 14px;
     }
 
-    input[type="text"] {
+    input {
       width: 100%;
-      padding: 0.75rem;
+      padding: 10px;
+      margin: 12px 0;
       border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 1rem;
-      margin-bottom: 1rem;
+      border-radius: 6px;
+      font-size: 16px;
       box-sizing: border-box;
     }
 
     button {
       width: 100%;
-      padding: 0.8rem;
-      background-color: #d32f2f;
+      padding: 12px;
+      background-color: #e02020;
       color: white;
       border: none;
-      border-radius: 8px;
-      font-size: 1rem;
+      border-radius: 6px;
+      font-size: 16px;
       cursor: pointer;
     }
 
     button:hover {
-      background-color: #b71c1c;
+      background-color: #c51b1b;
     }
 
     .terms {
-      font-size: 0.85rem;
-      color: #666;
-      margin-top: 1rem;
+      margin-top: 16px;
+      font-size: 13px;
+      color: #888;
     }
 
     .terms a {
-      color: #d32f2f;
-      text-decoration: none;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .resend {
-      font-size: 0.9rem;
-      margin-top: 1rem;
-    }
-
-    .resend a {
-      color: #d32f2f;
-      cursor: pointer;
-    }
-
-    .disabled-link {
-      color: #aaa;
-      pointer-events: none;
+      color: #e02020;
       text-decoration: none;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- مرحله اول -->
-    <div id="step1">
-      <h2>ورود به حساب کاربری</h2>
-      <p>برای استفاده از امکانات، لطفاً شمارهٔ موبایل خود را وارد کنید. کد تأیید به این شماره پیامک خواهد شد.</p>
-      <label for="mobile">شمارهٔ موبایل</label>
-      <input type="text" id="mobile" placeholder="مثلاً 9121234567">
-      <button onclick="sendCode()">تأیید</button>
-      <p class="terms">
-        با ورود، <a href="#">شرایط استفاده از خدمات</a> و <a href="#">حریم خصوصی</a> را می‌پذیرید.
-      </p>
-    </div>
-
-    <!-- مرحله دوم -->
-    <div id="step2" class="hidden">
-      <h2>کد تأیید را وارد کنید</h2>
-      <p>کدی که به شماره <span id="phone-display"></span> ارسال شده است را وارد کنید.</p>
-      <input type="text" id="otp" placeholder="کد ۵ رقمی">
-      <button onclick="verifyCode()">ورود</button>
-      <p class="resend">
-        <a id="resend-link" onclick="resendCode()">ارسال مجدد کد</a>
-        <span id="countdown" class="hidden"> (تا ارسال مجدد: <span id="seconds">60</span> ثانیه)</span>
-      </p>
-    </div>
+    <h2>ورود به حساب کاربری</h2>
+    <p>برای استفاده از امکانات، لطفاً شمارهٔ موبایل خود را وارد کنید. کد تأیید به این شماره پیامک خواهد شد.</p>
+    <input type="text" placeholder="مثلاً 9121234567">
+    <button>تأیید</button>
+    <p class="terms">با ورود، <a href="#">شرایط استفاده از خدمات</a> و <a href="#">حریم خصوصی</a> را می‌پذیرید.</p>
   </div>
-
-  <script>
-    let countdownInterval;
-
-    function sendCode() {
-      const mobile = document.getElementById("mobile").value.trim();
-      if (mobile === "") {
-        alert("لطفاً شماره موبایل را وارد کنید.");
-        return;
-      }
-
-      document.getElementById("step1").classList.add("hidden");
-      document.getElementById("step2").classList.remove("hidden");
-      document.getElementById("phone-display").innerText = "+98" + mobile;
-
-      startCountdown();
-    }
-
-    function resendCode() {
-      alert("کد جدید ارسال شد.");
-      startCountdown();
-    }
-
-    function startCountdown() {
-      const resendLink = document.getElementById("resend-link");
-      const countdown = document.getElementById("countdown");
-      const secondsSpan = document.getElementById("seconds");
-
-      let seconds = 60;
-      resendLink.classList.add("disabled-link");
-      countdown.classList.remove("hidden");
-      secondsSpan.textContent = seconds;
-
-      clearInterval(countdownInterval);
-      countdownInterval = setInterval(() => {
-        seconds--;
-        secondsSpan.textContent = seconds;
-        if (seconds <= 0) {
-          clearInterval(countdownInterval);
-          resendLink.classList.remove("disabled-link");
-          countdown.classList.add("hidden");
-        }
-      }, 1000);
-    }
-
-    function verifyCode() {
-      const code = document.getElementById("otp").value.trim();
-      const mobile = document.getElementById("mobile").value.trim();
-
-      if (code.length !== 5) {
-        alert("کد تأیید باید ۵ رقمی باشد.");
-        return;
-      }
-
-      // ذخیره شماره در localStorage
-      localStorage.setItem("userPhone", mobile);
-
-      // هدایت به پنل
-      window.location.href = "dashboard.html";
-    }
-  </script>
 </body>
 </html>

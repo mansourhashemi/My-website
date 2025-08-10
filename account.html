@@ -1,13 +1,11 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ورود به حساب کاربری</title>
-
-  <!-- بارگذاری فونت Vazir از CDN -->
-  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css" />
-
+<!doctype html>
+<html lang="fa" dir="rtl"> 
+<head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>ورود به حساب کاربری</title> 
+  <!-- بارگذاری فونت Vazir از CDN --> 
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css"> 
   <style>
     html, body {
       margin: 0;
@@ -30,7 +28,7 @@
     }
 
     h2 {
-      color: #e02020; /* رنگ عنوان */
+      color: #e02020;
       margin-bottom: 10px;
     }
 
@@ -48,42 +46,40 @@
       border-radius: 6px;
       font-size: 16px;
       box-sizing: border-box;
+      direction: rtl; /* راست‌چین */
+      text-align: right; /* متن و placeholder از راست */
     }
 
-    button {
+    /* دکمه تمام عرض مینیمال */
+    .btn-minimal {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 100%;
       padding: 12px;
-      background-color: #e02020;
-      color: white;
-      border: none;
-      border-radius: 6px;
+      border: 2px solid #222;
+      border-radius: 8px;
+      background: white;
+      color: #222;
       font-size: 16px;
+      font-weight: bold;
       cursor: pointer;
+      transition: background 0.15s ease;
+      box-sizing: border-box;
     }
 
-    button:hover {
-      background-color: #c51b1b;
+    .btn-minimal:hover {
+      background: #f5f5f5;
     }
+  </style> 
+</head> 
+<body> 
+  <div class="container"> 
+    <h2>ورود به حساب کاربری</h2> 
+    <p>برای استفاده از امکانات، لطفاً شمارهٔ موبایل خود را وارد کنید. کد تأیید به این شماره پیامک خواهد شد.</p> 
+    <input type="tel" placeholder="مثلاً 9121234567"> 
 
-    .terms {
-      margin-top: 16px;
-      font-size: 13px;
-      color: #888;
-    }
-
-    .terms a {
-      color: #e02020;
-      text-decoration: none;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h2>ورود به حساب کاربری</h2>
-    <p>برای استفاده از امکانات، لطفاً شمارهٔ موبایل خود را وارد کنید. کد تأیید به این شماره پیامک خواهد شد.</p>
-    <input type="text" placeholder="مثلاً 9121234567">
-    <button>تأیید</button>
-    <p class="terms">با ورود، <a href="#">شرایط استفاده از خدمات</a> و <a href="#">حریم خصوصی</a> را می‌پذیرید.</p>
-  </div>
+    <button class="btn-minimal">تأیید</button>
+  </div> 
 </body>
 </html>

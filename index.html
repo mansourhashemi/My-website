@@ -257,62 +257,64 @@
       <svg viewbox="0 0 24 24" width="18" height="18" fill="none" stroke="#666"> <path d="M12 2c3.866 0 7 3.134 7 7 0 5-7 13-7 13s-7-8-7-13c0-3.866 3.134-7 7-7z"></path> <circle cx="12" cy="9" r="2.2" /> 
       </svg> <select id="citySelect"> <option value="all">همه‌ی ایران</option> <option value="تهران">تهران</option> <option value="اصفهان">اصفهان</option> <option value="شیراز">شیراز</option> <option value="مشهد">مشهد</option> </select> 
      </div> 
-    </form> <!-- Icon Categories --> 
-    <div class="grid"> 
-     <div onclick="filterCategory('املاک')"> 
-      <div class="icon"> 
-       <svg class="icon-svg" viewbox="0 0 64 64" aria-hidden="true"> <path d="M32 10 L8 30 v20 a2 2 0 0 0 2 2 h12 v-12 h12 v12 h12 a2 2 0 0 0 2-2 V30 Z"></path> <path d="M26 34h4v6h-4zM36 34h4v6h-4z"></path> <polyline class="accent" points="32 6 32 10 46 20"></polyline> 
-       </svg> 
+    </form> <!-- Icon Categories --> <!-- این wrapper (mainPage) را اضافه کردم تا دقیقا همان بخش زیر نوار سرچ قابل مخفی شدن باشد --> 
+    <div id="mainPage"> 
+     <div class="grid"> 
+      <div onclick="filterCategory('املاک')"> 
+       <div class="icon"> 
+        <svg class="icon-svg" viewbox="0 0 64 64" aria-hidden="true"> <path d="M32 10 L8 30 v20 a2 2 0 0 0 2 2 h12 v-12 h12 v12 h12 a2 2 0 0 0 2-2 V30 Z"></path> <path d="M26 34h4v6h-4zM36 34h4v6h-4z"></path> <polyline class="accent" points="32 6 32 10 46 20"></polyline> 
+        </svg> 
+       </div> 
+       <div class="label">
+         املاک 
+       </div> 
       </div> 
-      <div class="label">
-       املاک
+      <div onclick="filterCategory('وسایل نقلیه')"> 
+       <div class="icon"> 
+        <svg class="icon-svg" viewbox="0 0 64 64" aria-hidden="true"> <rect x="6" y="28" width="52" height="18" rx="3"></rect> <path d="M10 28 L14 18 h36 l4 10"></path> <circle cx="18" cy="50" r="4"></circle> <circle cx="46" cy="50" r="4"></circle> <rect class="accent" x="26" y="34" width="12" height="6" rx="1"></rect> 
+        </svg> 
+       </div> 
+       <div class="label">
+         وسایل نقلیه 
+       </div> 
       </div> 
-     </div> 
-     <div onclick="filterCategory('وسایل نقلیه')"> 
-      <div class="icon"> 
-       <svg class="icon-svg" viewbox="0 0 64 64" aria-hidden="true"> <rect x="6" y="28" width="52" height="18" rx="3"></rect> <path d="M10 28 L14 18 h36 l4 10"></path> <circle cx="18" cy="50" r="4"></circle> <circle cx="46" cy="50" r="4"></circle> <rect class="accent" x="26" y="34" width="12" height="6" rx="1"></rect> 
-       </svg> 
+      <div onclick="filterCategory('کالای دیجیتال')"> 
+       <div class="icon"> 
+        <svg class="icon-svg" viewbox="0 0 64 64" aria-hidden="true"> <rect x="8" y="12" width="48" height="36" rx="3"></rect> <path d="M28 36 l8-8 v12"></path> <path class="accent" d="M32 18 v8" stroke-width="3"></path> <path d="M18 52 h28"></path> 
+        </svg> 
+       </div> 
+       <div class="label">
+         کالای دیجیتال 
+       </div> 
       </div> 
-      <div class="label">
-       وسایل نقلیه
+      <div onclick="filterCategory('خانه و آشپزخانه')"> 
+       <div class="icon"> 
+        <svg class="icon-svg" viewbox="0 0 64 64" aria-hidden="true"> <circle cx="22" cy="30" r="9"></circle> <rect x="34" y="20" width="20" height="12" rx="2"></rect> <path class="accent" d="M14 24 L10 14" stroke-width="2.8"></path> <path d="M14 36 L10 46"></path> 
+        </svg> 
+       </div> 
+       <div class="label">
+         خانه و آشپزخانه 
+       </div> 
       </div> 
-     </div> 
-     <div onclick="filterCategory('کالای دیجیتال')"> 
-      <div class="icon"> 
-       <svg class="icon-svg" viewbox="0 0 64 64" aria-hidden="true"> <rect x="8" y="12" width="48" height="36" rx="3"></rect> <path d="M28 36 l8-8 v12"></path> <path class="accent" d="M32 18 v8" stroke-width="3"></path> <path d="M18 52 h28"></path> 
-       </svg> 
+      <div onclick="filterCategory('خدمات')"> 
+       <div class="icon"> 
+        <svg class="icon-svg" viewbox="0 0 64 64" aria-hidden="true"> <circle cx="32" cy="32" r="18"></circle> <path class="accent" d="M32 22 v10 l8 4" stroke-width="3"></path> <text x="44" y="52" font-size="10" fill="var(--accent)" font-family="inherit">
+           24 
+         </text> 
+        </svg> 
+       </div> 
+       <div class="label">
+         خدمات 
+       </div> 
       </div> 
-      <div class="label">
-       کالای دیجیتال
-      </div> 
-     </div> 
-     <div onclick="filterCategory('خانه و آشپزخانه')"> 
-      <div class="icon"> 
-       <svg class="icon-svg" viewbox="0 0 64 64" aria-hidden="true"> <circle cx="22" cy="30" r="9"></circle> <rect x="34" y="20" width="20" height="12" rx="2"></rect> <path class="accent" d="M14 24 L10 14" stroke-width="2.8"></path> <path d="M14 36 L10 46"></path> 
-       </svg> 
-      </div> 
-      <div class="label">
-       خانه و آشپزخانه
-      </div> 
-     </div> 
-     <div onclick="filterCategory('خدمات')"> 
-      <div class="icon"> 
-       <svg class="icon-svg" viewbox="0 0 64 64" aria-hidden="true"> <circle cx="32" cy="32" r="18"></circle> <path class="accent" d="M32 22 v10 l8 4" stroke-width="3"></path> <text x="44" y="52" font-size="10" fill="var(--accent)" font-family="inherit">
-         24
-        </text> 
-       </svg> 
-      </div> 
-      <div class="label">
-       خدمات
-      </div> 
-     </div> 
-     <div onclick="filterCategory('استخدام')"> 
-      <div class="icon"> 
-       <svg class="icon-svg" viewbox="0 0 64 64" aria-hidden="true"> <rect x="8" y="20" width="48" height="28" rx="3"></rect> <rect x="20" y="12" width="24" height="12" rx="2"></rect> <circle class="accent" cx="32" cy="36" r="6"></circle> <path d="M26 46 c2 -4 10 -4 12 0"></path> 
-       </svg> 
-      </div> 
-      <div class="label">
-       استخدام
+      <div onclick="filterCategory('استخدام')"> 
+       <div class="icon"> 
+        <svg class="icon-svg" viewbox="0 0 64 64" aria-hidden="true"> <rect x="8" y="20" width="48" height="28" rx="3"></rect> <rect x="20" y="12" width="24" height="12" rx="2"></rect> <circle class="accent" cx="32" cy="36" r="6"></circle> <path d="M26 46 c2 -4 10 -4 12 0"></path> 
+        </svg> 
+       </div> 
+       <div class="label">
+         استخدام 
+       </div> 
       </div> 
      </div> 
     </div> 
@@ -382,12 +384,18 @@
       const allAds = [...adsData, ...getLocalAds()];
       const filtered = allAds.filter(ad => ad.category === category);
       displayAds(filtered);
+      // وقتی کاربر از روی آیکون دسته‌بندی فیلتر می‌کنه، صفحه ثابت هم محو بشه
+      const mainPage = document.getElementById('mainPage');
+      if (mainPage) mainPage.style.display = 'none';
     }
 
     function handleSearch(event) {
       event.preventDefault();
       submitSearch();
     }
+
+    // mainPage reference — برای مخفی/نمایش صفحه ثابت زیر نوار سرچ
+    const mainPage = document.getElementById('mainPage');
 
     function submitSearch() {
       const query = document.getElementById("searchQuery").value.trim().toLowerCase();
@@ -400,8 +408,21 @@
         return (query === "" && selectedCity === "all") ? true : (matchText && matchCity);
       });
 
+      // مخفی/نمایش بخش اصلی صفحه زیر نوار سرچ
+      if (mainPage) {
+        if (query !== "" || selectedCity !== "all") {
+          mainPage.style.display = 'none';
+        } else {
+          mainPage.style.display = '';
+        }
+      }
+
       displayAds(results);
     }
+
+    // ✅ جستجوی زنده: نتیجه با هر تایپ یا تغییر شهر فیلتر می‌شود
+    document.getElementById("searchQuery").addEventListener("input", submitSearch);
+    document.getElementById("citySelect").addEventListener("change", submitSearch);
 
     displayAds([...adsData, ...getLocalAds()]);
 

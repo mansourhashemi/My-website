@@ -1,95 +1,85 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ورود</title>
-
-  <!-- بارگذاری فونت Vazir از CDN -->
-  <link href="https://cdn.fontcdn.ir/Font/Persian/Vazir/Vazir.css" rel="stylesheet" type="text/css" />
-
+<!doctype html>
+<html lang="fa" dir="rtl"> 
+<head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>ورود به حساب کاربری</title> 
+  <!-- بارگذاری فونت Vazir از CDN --> 
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet" type="text/css"> 
   <style>
-    body {
+    html, body {
       margin: 0;
       padding: 0;
+      width: 100vw;
+      height: 100vh;
       font-family: 'Vazir', sans-serif;
       background-color: #fff;
       display: flex;
-      flex-direction: column;
-      height: 100vh;
+      justify-content: center;
+      align-items: center;
     }
 
     .container {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      width: 100%;
+      max-width: 400px;
       padding: 20px;
       box-sizing: border-box;
+      text-align: center;
     }
 
     h2 {
+      color: #e02020;
       margin-bottom: 10px;
-      font-size: 24px;
     }
 
     p {
-      font-size: 14px;
-      color: #555;
-      text-align: center;
       margin-bottom: 20px;
-      line-height: 1.8;
+      color: #444;
+      font-size: 14px;
     }
 
-    input[type="text"] {
+    input {
       width: 100%;
-      max-width: 400px;
-      padding: 14px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      margin-bottom: 16px;
-      box-sizing: border-box;
-      font-family: 'Vazir', sans-serif;
-    }
-
-    button {
-      width: 100%;
-      max-width: 400px;
       padding: 10px;
-      font-size: 18px;
-      background-color: #e53935;
-      color: white;
-      border: none;
-      border-radius: 12px;
+      margin: 12px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+      box-sizing: border-box;
+      direction: rtl; /* راست‌چین */
+      text-align: right; /* متن و placeholder از راست */
+    }
+
+    /* دکمه تمام عرض مینیمال */
+    .btn-minimal {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 12px;
+      border: 2px solid #222;
+      border-radius: 8px;
+      background: white;
+      color: #222;
+      font-size: 16px;
+      font-weight: bold;
       cursor: pointer;
-      font-family: 'Vazir', sans-serif;
+      transition: background 0.15s ease;
+      box-sizing: border-box;
     }
 
-    .footer {
-      text-align: center;
-      font-size: 12px;
-      margin-top: 16px;
-      color: #888;
+    .btn-minimal:hover {
+      background: #f5f5f5;
     }
+  </style> 
+</head> 
+<body> 
+  <div class="container"> 
+    <h2>ورود به حساب کاربری</h2> 
+    <p>برای استفاده از امکانات، لطفاً شمارهٔ موبایل خود را وارد کنید. کد تأیید به این شماره پیامک خواهد شد.</p> 
+    <input type="tel" placeholder="مثلاً 9121234567"> 
 
-    .footer a {
-      color: #b71c1c;
-      text-decoration: none;
-      font-family: 'Vazir', sans-serif;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h2>ورود به حساب کاربری</h2>
-    <p>برای استفاده از امکانات لطفاً شمارهٔ موبایل خود را وارد کنید. کد تأیید به این شماره پیامک خواهد شد.</p>
-    <input type="text" placeholder="شمارهٔ موبایل">
-    <button>تأیید</button>
-    <div class="footer">
-      با ورود، <a href="#">شرایط استفاده از خدمات</a> و <a href="#">حریم خصوصی</a> را می‌پذیرم.
-    </div>
-  </div>
+    <button class="btn-minimal">تأیید</button>
+  </div> 
 </body>
 </html>

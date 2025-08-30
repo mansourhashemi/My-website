@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="fa" dir="rtl"> 
- <head> 
-  <meta charset="UTF-8"> 
-  <title>سایت آگهی – نسخه آیکونی</title> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet"> 
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>سایت آگهی – نسخه آیکونی</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css" rel="stylesheet">
   <style>
     :root{
       --stroke: #222;
@@ -23,6 +23,36 @@
       -moz-osx-font-smoothing:grayscale;
     }
     .container { width: 90%; max-width: 1200px; margin: auto; }
+
+    /* Navigation Header */
+    .nav-header {
+      display: flex;
+      align-items: center;
+      padding: 1rem 0;
+      margin-bottom: 1rem;
+      display: none; /* ابتدا مخفی است */
+    }
+    .back-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      color: var(--accent);
+      font-family: 'Vazir', sans-serif;
+      font-size: 14px;
+      margin-left: 16px;
+    }
+    .back-button svg {
+      width: 20px;
+      height: 20px;
+      margin-right: 6px;
+    }
+    .category-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
 
     /* Search Section */
     .search-section {
@@ -116,6 +146,50 @@
     .label{font-size:14px; cursor: pointer;}
     @media (max-width:420px){:root{--size:60px}}
 
+    /* استایل‌های جدید برای بخش آگهی‌ها */
+    .ad-image-container {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      overflow: hidden;
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+    }
+
+    .ad-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .ad-card:hover .ad-image {
+      transform: scale(1.03);
+    }
+
+    .ad-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background-color: var(--accent);
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .ad-city {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
     /* Ads */
     .ads-section {
       padding: 2rem 0 6rem;
@@ -131,12 +205,6 @@
       padding: 1rem;
       border-radius: 8px;
       box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-    }
-    .ad-card img {
-      width: 100%;
-      border-radius: 6px;
-      margin-bottom: 0.5rem;
-      display:block;
     }
     .ad-card h3 { font-size: 1.05rem; margin: 0.4rem 0; }
     .ad-card p { margin:0.25rem 0 0.5rem; color:#555; font-size:0.95rem }
@@ -244,113 +312,241 @@
       .search-bar { width: 92%; margin-right: auto; margin-left: auto; }
       .bottom-link { width: 56px; max-width:56px; font-size:11px; }
     }
-  </style> 
- </head> 
- <body> <!-- Search & Categories --> 
-  <section class="search-section"> 
-   <div class="container"> 
-    <form class="search-bar" onsubmit="handleSearch(event)"> 
-     <div class="search-input-container"> 
-      <input type="text" id="searchQuery" class="search-input" placeholder="جستجو در آگهی"> 
-     </div> 
-     <div class="location"> <!-- simple map pin svg --> 
-      <svg viewbox="0 0 24 24" width="18" height="18" fill="none" stroke="#666"> <path d="M12 2c3.866 0 7 3.134 7 7 0 5-7 13-7 13s-7-8-7-13c0-3.866 3.134-7 7-7z"></path> <circle cx="12" cy="9" r="2.2" /> 
-      </svg> <select id="citySelect"> <option value="all">همه‌ی ایران</option> <option value="تهران">تهران</option> <option value="اصفهان">اصفهان</option> <option value="شیراز">شیراز</option> <option value="مشهد">مشهد</option> </select> 
-     </div> 
-    </form> <!-- Icon Categories --> <!-- این wrapper (mainPage) را اضافه کردم تا دقیقا همان بخش زیر نوار سرچ قابل مخفی شدن باشد --> 
-    <div id="mainPage"> 
-     <div class="grid"> 
-      <div onclick="filterCategory('املاک')"> 
-       <div class="icon"> 
-        <svg class="icon-svg" viewbox="0 0 64 64" aria-hidden="true"> <path d="M32 10 L8 30 v20 a2 2 0 0 0 2 2 h12 v-12 h12 v12 h12 a2 2 0 0 0 2-2 V30 Z"></path> <path d="M26 34h4v6h-4zM36 34h4v6h-4z"></path> <polyline class="accent" points="32 6 32 10 46 20"></polyline> 
-        </svg> 
-       </div> 
-       <div class="label">
-         املاک 
-       </div> 
-      </div> 
-      <div onclick="filterCategory('وسایل نقلیه')"> 
-       <div class="icon"> 
-        <svg class="icon-svg" viewbox="0 0 64 64" aria-hidden="true"> <rect x="6" y="28" width="52" height="18" rx="3"></rect> <path d="M10 28 L14 18 h36 l4 10"></path> <circle cx="18" cy="50" r="4"></circle> <circle cx="46" cy="50" r="4"></circle> <rect class="accent" x="26" y="34" width="12" height="6" rx="1"></rect> 
-        </svg> 
-       </div> 
-       <div class="label">
-         وسایل نقلیه 
-       </div> 
-      </div> 
-      <div onclick="filterCategory('کالای دیجیتال')"> 
-       <div class="icon"> 
-        <svg class="icon-svg" viewbox="0 0 64 64" aria-hidden="true"> <rect x="8" y="12" width="48" height="36" rx="3"></rect> <path d="M28 36 l8-8 v12"></path> <path class="accent" d="M32 18 v8" stroke-width="3"></path> <path d="M18 52 h28"></path> 
-        </svg> 
-       </div> 
-       <div class="label">
-         کالای دیجیتال 
-       </div> 
-      </div> 
-      <div onclick="filterCategory('خانه و آشپزخانه')"> 
-       <div class="icon"> 
-        <svg class="icon-svg" viewbox="0 0 64 64" aria-hidden="true"> <circle cx="22" cy="30" r="9"></circle> <rect x="34" y="20" width="20" height="12" rx="2"></rect> <path class="accent" d="M14 24 L10 14" stroke-width="2.8"></path> <path d="M14 36 L10 46"></path> 
-        </svg> 
-       </div> 
-       <div class="label">
-         خانه و آشپزخانه 
-       </div> 
-      </div> 
-      <div onclick="filterCategory('خدمات')"> 
-       <div class="icon"> 
-        <svg class="icon-svg" viewbox="0 0 64 64" aria-hidden="true"> <circle cx="32" cy="32" r="18"></circle> <path class="accent" d="M32 22 v10 l8 4" stroke-width="3"></path> <text x="44" y="52" font-size="10" fill="var(--accent)" font-family="inherit">
-           24 
-         </text> 
-        </svg> 
-       </div> 
-       <div class="label">
-         خدمات 
-       </div> 
-      </div> 
-      <div onclick="filterCategory('استخدام')"> 
-       <div class="icon"> 
-        <svg class="icon-svg" viewbox="0 0 64 64" aria-hidden="true"> <rect x="8" y="20" width="48" height="28" rx="3"></rect> <rect x="20" y="12" width="24" height="12" rx="2"></rect> <circle class="accent" cx="32" cy="36" r="6"></circle> <path d="M26 46 c2 -4 10 -4 12 0"></path> 
-        </svg> 
-       </div> 
-       <div class="label">
-         استخدام 
-       </div> 
-      </div> 
-     </div> 
-    </div> 
-   </div> 
-  </section> <!-- Ads Section --> 
-  <section class="ads-section"> 
-   <div class="container"> 
-    <h2>آگهی‌های جدید</h2> 
-    <div class="ads-grid" id="ads-container"></div> 
-   </div> 
-  </section> <!-- Bottom Bar with custom SVG icons matching provided image --> 
-  <div class="bottom-bar" role="navigation" aria-label="منوی پایین"> <!-- Ads (megaphone) --> <a href="ads.html" class="bottom-link" data-page="ads" title="آگهی‌ها"> 
-    <svg viewbox="0 0 64 64" aria-hidden="true"> <!-- megaphone outline --> <path d="M8 28h26l14-8v28l-14-8H8z"></path> <!-- small speaker element --> <rect x="50" y="22" width="6" height="20" rx="1"></rect> <circle class="accent-dot" cx="53" cy="26" r="1.6"></circle> 
-    </svg> <span>آگهی‌ها</span> </a> <!-- Bookmarks / نشان‌ها (bookmark) --> <a href="favorites.html" class="bottom-link" data-page="favorites" title="نشان‌ها"> 
-    <svg viewbox="0 0 64 64" aria-hidden="true"> <path d="M16 8h32v40l-16-8-16 8z"></path> <rect x="28" y="14" width="8" height="8" rx="1"></rect> <rect class="accent" x="46" y="12" width="2" height="6" rx="1"></rect> 
-    </svg> <span>نشان‌ها</span> </a> <!-- Post (center +) --> <a href="post.html" class="bottom-link plus" data-page="post" title="ثبت آگهی"> 
-    <svg viewbox="0 0 64 64" aria-hidden="true"> <rect x="8" y="18" width="48" height="28" rx="4"></rect> <path d="M32 22v20M22 32h20" stroke-linecap="round" stroke-linejoin="round"></path> <circle class="accent-dot" cx="46" cy="20" r="2.2"></circle> 
-    </svg> <span>ثبت آگهی</span> </a> <!-- Support (headset) --> <a href="support.html" class="bottom-link" data-page="support" title="پشتیبانی"> 
-    <svg viewbox="0 0 64 64" aria-hidden="true"> <path d="M12 36v6a6 6 0 0 0 6 6h2v-16a4 4 0 0 0-4-4h-4z"></path> <path d="M52 36v6a6 6 0 0 1-6 6h-2v-16a4 4 0 0 1 4-4h4z"></path> <path d="M20 22a12 12 0 0 1 24 0" fill="none"></path> <circle class="accent-dot" cx="24" cy="34" r="1.6"></circle> 
-    </svg> <span>پشتیبانی</span> </a> <!-- Account (user) --> <a href="account.html" class="bottom-link" data-page="account" title="حساب من"> 
-    <svg viewbox="0 0 64 64" aria-hidden="true"> <circle cx="32" cy="20" r="8"></circle> <path d="M8 52c4-12 20-14 24-14s20 2 24 14"></path> <rect class="accent" x="30" y="30" width="4" height="2" rx="1"></rect> 
-    </svg> <span>حساب من</span> </a> 
-  </div> <!-- Footer --> 
-  <footer class="footer"> 
-   <div class="container"> 
-    <p>© ۲۰۲۵ دیوار من - تمامی حقوق محفوظ است.</p> 
-   </div> 
-  </footer> <!-- JavaScript --> 
+  </style>
+</head>
+<body>
+  <!-- Navigation Header -->
+  <div class="nav-header container" id="navHeader">
+    <button class="back-button" onclick="goBackToMain()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path d="M19 12H5M12 19l-7-7 7-7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      بازگشت
+    </button>
+    <div class="category-title" id="categoryTitle"></div>
+  </div>
+
+  <!-- Search & Categories -->
+  <section class="search-section">
+    <div class="container">
+      <form class="search-bar" onsubmit="handleSearch(event)">
+        <div class="search-input-container">
+          <input type="text" id="searchQuery" class="search-input" placeholder="جستجو در آگهی">
+        </div>
+        <div class="location">
+          <svg viewbox="0 0 24 24" width="18" height="18" fill="none" stroke="#666">
+            <path d="M12 2c3.866 0 7 3.134 7 7 0 5-7 13-7 13s-7-8-7-13c0-3.866 3.134-7 7-7z"></path>
+            <circle cx="12" cy="9" r="2.2" />
+          </svg>
+          <select id="citySelect">
+            <option value="all">همه‌ی ایران</option>
+            <option value="تهران">تهران</option>
+            <option value="اصفهان">اصفهان</option>
+            <option value="شیراز">شیراز</option>
+            <option value="مشهد">مشهد</option>
+          </select>
+        </div>
+      </form>
+
+      <!-- Icon Categories -->
+      <div id="mainPage">
+        <div class="grid">
+          <div onclick="filterCategory('املاک')">
+            <div class="icon">
+              <svg class="icon-svg" viewbox="0 0 64 64" aria-hidden="true">
+                <path d="M32 10 L8 30 v20 a2 2 0 0 0 2 2 h12 v-12 h12 v12 h12 a2 2 0 0 0 2-2 V30 Z"></path>
+                <path d="M26 34h4v6h-4zM36 34h4v6h-4z"></path>
+                <polyline class="accent" points="32 6 32 10 46 20"></polyline>
+              </svg>
+            </div>
+            <div class="label">املاک</div>
+          </div>
+          <div onclick="filterCategory('وسایل نقلیه')">
+            <div class="icon">
+              <svg class="icon-svg" viewbox="0 0 64 64" aria-hidden="true">
+                <rect x="6" y="28" width="52" height="18" rx="3"></rect>
+                <path d="M10 28 L14 18 h36 l4 10"></path>
+                <circle cx="18" cy="50" r="4"></circle>
+                <circle cx="46" cy="50" r="4"></circle>
+                <rect class="accent" x="26" y="34" width="12" height="6" rx="1"></rect>
+              </svg>
+            </div>
+            <div class="label">وسایل نقلیه</div>
+          </div>
+          <div onclick="filterCategory('کالای دیجیتال')">
+            <div class="icon">
+              <svg class="icon-svg" viewbox="0 0 64 64" aria-hidden="true">
+                <rect x="8" y="12" width="48" height="36" rx="3"></rect>
+                <path d="M28 36 l8-8 v12"></path>
+                <path class="accent" d="M32 18 v8" stroke-width="3"></path>
+                <path d="M18 52 h28"></path>
+              </svg>
+            </div>
+            <div class="label">کالای دیجیتال</div>
+          </div>
+          <div onclick="filterCategory('خانه و آشپزخانه')">
+            <div class="icon">
+              <svg class="icon-svg" viewbox="0 0 64 64" aria-hidden="true">
+                <circle cx="22" cy="30" r="9"></circle>
+                <rect x="34" y="20" width="20" height="12" rx="2"></rect>
+                <path class="accent" d="M14 24 L10 14" stroke-width="2.8"></path>
+                <path d="M14 36 L10 46"></path>
+              </svg>
+            </div>
+            <div class="label">خانه و آشپزخانه</div>
+          </div>
+          <div onclick="filterCategory('خدمات')">
+            <div class="icon">
+              <svg class="icon-svg" viewbox="0 0 64 64" aria-hidden="true">
+                <circle cx="32" cy="32" r="18"></circle>
+                <path class="accent" d="M32 22 v10 l8 4" stroke-width="3"></path>
+                <text x="44" y="52" font-size="10" fill="var(--accent)" font-family="inherit">24</text>
+              </svg>
+            </div>
+            <div class="label">خدمات</div>
+          </div>
+          <div onclick="filterCategory('استخدام')">
+            <div class="icon">
+              <svg class="icon-svg" viewbox="0 0 64 64" aria-hidden="true">
+                <rect x="8" y="20" width="48" height="28" rx="3"></rect>
+                <rect x="20" y="12" width="24" height="12" rx="2"></rect>
+                <circle class="accent" cx="32" cy="36" r="6"></circle>
+                <path d="M26 46 c2 -4 10 -4 12 0"></path>
+              </svg>
+            </div>
+            <div class="label">استخدام</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ads Section -->
+  <section class="ads-section">
+    <div class="container">
+      <h2 id="adsTitle">آگهی‌های جدید</h2>
+      <div class="ads-grid" id="ads-container"></div>
+    </div>
+  </section>
+
+  <!-- Bottom Bar with custom SVG icons matching provided image -->
+  <div class="bottom-bar" role="navigation" aria-label="منوی پایین">
+    <a href="ads.html" class="bottom-link" data-page="ads" title="آگهی‌ها">
+      <svg viewbox="0 0 64 64" aria-hidden="true">
+        <path d="M8 28h26l14-8v28l-14-8H8z"></path>
+        <rect x="50" y="22" width="6" height="20" rx="1"></rect>
+        <circle class="accent-dot" cx="53" cy="26" r="1.6"></circle>
+      </svg>
+      <span>آگهی‌ها</span>
+    </a>
+    <a href="favorites.html" class="bottom-link" data-page="favorites" title="نشان‌ها">
+      <svg viewbox="0 0 64 64" aria-hidden="true">
+        <path d="M16 8h32v40l-16-8-16 8z"></path>
+        <rect x="28" y="14" width="8" height="8" rx="1"></rect>
+        <rect class="accent" x="46" y="12" width="2" height="6" rx="1"></rect>
+      </svg>
+      <span>نشان‌ها</span>
+    </a>
+    <a href="post.html" class="bottom-link plus" data-page="post" title="ثبت آگهی">
+      <svg viewbox="0 0 64 64" aria-hidden="true">
+        <rect x="8" y="18" width="48" height="28" rx="4"></rect>
+        <path d="M32 22v20M22 32h20" stroke-linecap="round" stroke-linejoin="round"></path>
+        <circle class="accent-dot" cx="46" cy="20" r="2.2"></circle>
+      </svg>
+      <span>ثبت آگهی</span>
+    </a>
+    <a href="support.html" class="bottom-link" data-page="support" title="پشتیبانی">
+      <svg viewbox="0 0 64 64" aria-hidden="true">
+        <path d="M12 36v6a6 6 0 0 0 6 6h2v-16a4 4 0 0 0-4-4h-4z"></path>
+        <path d="M52 36v6a6 6 0 0 1-6 6h-2v-16a4 4 0 0 1 4-4h4z"></path>
+        <path d="M20 22a12 12 0 0 1 24 0" fill="none"></path>
+        <circle class="accent-dot" cx="24" cy="34" r="1.6"></circle>
+      </svg>
+      <span>پشتیبانی</span>
+    </a>
+    <a href="account.html" class="bottom-link" data-page="account" title="حساب من">
+      <svg viewbox="0 0 64 64" aria-hidden="true">
+        <circle cx="32" cy="20" r="8"></circle>
+        <path d="M8 52c4-12 20-14 24-14s20 2 24 14"></path>
+        <rect class="accent" x="30" y="30" width="4" height="2" rx="1"></rect>
+      </svg>
+      <span>حساب من</span>
+    </a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>© ۲۰۲۵ آنلاین آگهی - تمامی حقوق محفوظ است.</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
   <script>
     const adsData = [
-      { title: 'گوشی سامسونگ A52', description: '8 گیگ رم، کاملاً نو', price: '۱۲,۰۰۰,۰۰۰ تومان', phone: '09123456789', image: 'https://via.placeholder.com/300', category: 'کالای دیجیتال', city: 'تهران' },
-      { title: 'پژو ۲۰۶ مدل ۹۸', description: 'بیمه تا آخر سال، فنی سالم', price: '۴۲۰,۰۰۰,۰۰۰ تومان', phone: '09121234567', image: 'https://via.placeholder.com/300', category: 'وسایل نقلیه', city: 'مشهد' },
-      { title: 'میز ناهارخوری ۶ نفره', description: 'چوب راش، رنگ گردویی', price: '۶,۵۰۰,۰۰۰ تومان', phone: '09127654321', image: 'https://via.placeholder.com/300', category: 'خانه و آشپزخانه', city: 'اصفهان' }
+      { 
+        title: 'گوشی سامسونگ A52', 
+        description: '8 گیگ رم، کاملاً نو با گارانتی 18 ماهه', 
+        price: '۱۲,۰۰۰,۰۰۰ تومان', 
+        phone: '09123456789', 
+        image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80', 
+        category: 'کالای دیجیتال', 
+        city: 'تهران' 
+      },
+      { 
+        title: 'پژو ۲۰۶ مدل ۹۸', 
+        description: 'بیمه تا آخر سال، فنی سالم، رنگ خورده جزئی', 
+        price: '۴۲۰,۰۰۰,۰۰۰ تومان', 
+        phone: '09121234567', 
+        image: 'https://images.unsplash.com/photo-1549399542-7e82138d0dda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80', 
+        category: 'وسایل نقلیه', 
+        city: 'مشهد' 
+      },
+      { 
+        title: 'میز ناهارخوری ۶ نفره', 
+        description: 'چوب راش، رنگ گردویی، ساخت اصفهان', 
+        price: '۶,۵۰۰,۰۰۰ تومان', 
+        phone: '09127654321', 
+        image: 'https://images.unsplash.com/photo-1533090368676-1fd25485db88?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80', 
+        category: 'خانه و آشپزخانه', 
+        city: 'اصفهان' 
+      },
+      { 
+        title: 'آپارتمان ۸۰ متری در پردیس', 
+        description: 'ساخت ۱۴۰۰، انباری و پارکینگ', 
+        price: '۳,۲۰۰,۰۰۰,۰۰۰ تومان', 
+        phone: '09135556677', 
+        image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80', 
+        category: 'املاک', 
+        city: 'تهران' 
+      },
+      { 
+        title: 'طراحی سایت شرکتی', 
+        description: 'طراحی وبسایت اختصاصی با وردپرس', 
+        price: '۴,۵۰۰,۰۰۰ تومان', 
+        phone: '09128889900', 
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80', 
+        category: 'خدمات', 
+        city: 'شیراز' 
+      },
+      { 
+        title: 'منشی تمام وقت', 
+        description: 'مسلط به Office، حقوق توافقی', 
+        price: 'توافقی', 
+        phone: '021-44556677', 
+        image: 'https://images.unsplash.com/photo-1579389083078-4e7018379f7e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80', 
+        category: 'استخدام', 
+        city: 'تهران' 
+      }
     ];
 
     const adsContainer = document.getElementById('ads-container');
+    const navHeader = document.getElementById('navHeader');
+    const categoryTitle = document.getElementById('categoryTitle');
+    const adsTitle = document.getElementById('adsTitle');
+    const mainPage = document.getElementById('mainPage');
+
+    let currentCategory = null;
 
     function getLocalAds() {
       const stored = localStorage.getItem('ads');
@@ -360,14 +556,18 @@
     function displayAds(ads) {
       adsContainer.innerHTML = '';
       if (!ads.length) {
-        adsContainer.innerHTML = '<p>هیچ آگهی‌ای یافت نشد.</p>';
+        adsContainer.innerHTML = '<p style="text-align: center; grid-column: 1/-1; padding: 2rem;">هیچ آگهی‌ای یافت نشد.</p>';
         return;
       }
       ads.forEach(ad => {
         const card = document.createElement('div');
         card.className = 'ad-card';
         card.innerHTML = `
-          <img src="${ad.image}" alt="تصویر آگهی"/>
+          <div class="ad-image-container">
+            <img src="${ad.image}" alt="${ad.title}" class="ad-image"/>
+            <div class="ad-badge">${ad.category}</div>
+            <div class="ad-city">${ad.city}</div>
+          </div>
           <h3>${ad.title}</h3>
           <p>${ad.description}</p>
           <span>قیمت: ${ad.price}</span>
@@ -381,21 +581,37 @@
     }
 
     function filterCategory(category) {
+      currentCategory = category;
       const allAds = [...adsData, ...getLocalAds()];
       const filtered = allAds.filter(ad => ad.category === category);
       displayAds(filtered);
-      // وقتی کاربر از روی آیکون دسته‌بندی فیلتر می‌کنه، صفحه ثابت هم محو بشه
-      const mainPage = document.getElementById('mainPage');
-      if (mainPage) mainPage.style.display = 'none';
+      
+      // نمایش هدر ناوبری و مخفی کردن صفحه اصلی
+      navHeader.style.display = 'flex';
+      categoryTitle.textContent = category;
+      adsTitle.textContent = `آگهی‌های ${category}`;
+      mainPage.style.display = 'none';
+      
+      // اسکرول به بالا
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function goBackToMain() {
+      // بازگشت به صفحه اصلی
+      currentCategory = null;
+      navHeader.style.display = 'none';
+      adsTitle.textContent = 'آگهی‌های جدید';
+      mainPage.style.display = '';
+      displayAds([...adsData, ...getLocalAds()]);
+      
+      // اسکرول به بالا
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function handleSearch(event) {
       event.preventDefault();
       submitSearch();
     }
-
-    // mainPage reference — برای مخفی/نمایش صفحه ثابت زیر نوار سرچ
-    const mainPage = document.getElementById('mainPage');
 
     function submitSearch() {
       const query = document.getElementById("searchQuery").value.trim().toLowerCase();
@@ -408,22 +624,32 @@
         return (query === "" && selectedCity === "all") ? true : (matchText && matchCity);
       });
 
-      // مخفی/نمایش بخش اصلی صفحه زیر نوار سرچ
-      if (mainPage) {
-        if (query !== "" || selectedCity !== "all") {
+      // اگر جستجو انجام شده، هدر ناوبری را مخفی و صفحه اصلی را نشان بده
+      if (query !== "" || selectedCity !== "all") {
+        navHeader.style.display = 'none';
+        mainPage.style.display = 'none';
+        adsTitle.textContent = `نتایج جستجو برای "${query}"`;
+      } else {
+        // اگر جستجو خالی است، به حالت قبلی برگرد
+        if (currentCategory) {
+          navHeader.style.display = 'flex';
           mainPage.style.display = 'none';
+          adsTitle.textContent = `آگهی‌های ${currentCategory}`;
         } else {
+          navHeader.style.display = 'none';
           mainPage.style.display = '';
+          adsTitle.textContent = 'آگهی‌های جدید';
         }
       }
 
       displayAds(results);
     }
 
-    // ✅ جستجوی زنده: نتیجه با هر تایپ یا تغییر شهر فیلتر می‌شود
+    // جستجوی زنده: نتیجه با هر تایپ یا تغییر شهر فیلتر می‌شود
     document.getElementById("searchQuery").addEventListener("input", submitSearch);
     document.getElementById("citySelect").addEventListener("change", submitSearch);
 
+    // نمایش آگهی‌ها در ابتدا
     displayAds([...adsData, ...getLocalAds()]);
 
     const currentPage = window.location.pathname.split('/').pop().replace('.html','') || 'index';
@@ -440,6 +666,6 @@
         }
       });
     });
-  </script> 
- </body>
+  </script>
+</body>
 </html>
